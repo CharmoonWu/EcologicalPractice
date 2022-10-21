@@ -1,21 +1,29 @@
 import React from "react";
-import { Menu } from "evergreen-ui";
+import { useNavigate } from "react-router-dom";
 import tw from "twin.macro";
+import { MenuList, MenuItem, ListItemText } from "@mui/material";
 
-const { Group, Item } = Menu;
-const Wrap = tw.div`w-[300px] h-full`;
+const path = [
+  {
+    path: "/user",
+    name: "user",
+  },
+  {
+    path: "/set",
+    name: "set",
+  },
+];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
   return (
-    <Wrap>
-      <Menu>
-        <Group title="菜单导航">
-          {/* 用户首页 */}
-          <Item>user</Item>
-          {/* 设置 */}
-          <Item>setting</Item>
-        </Group>
-      </Menu>
-    </Wrap>
+    <MenuList className="w-[300px] h-full">
+      {path.map((item, i) => (
+        <MenuItem key={i} onClick={() => navigate(item.path)}>
+          <ListItemText>{item.name}</ListItemText>
+        </MenuItem>
+      ))}
+    </MenuList>
   );
 }
