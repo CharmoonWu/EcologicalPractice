@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import tw from "twin.macro";
 import { MenuList, MenuItem, ListItemText } from "@mui/material";
 
 const path = [
@@ -11,6 +10,10 @@ const path = [
   {
     path: "/set",
     name: "set",
+  },
+  {
+    path: "/today",
+    name: "Today",
   },
 ];
 

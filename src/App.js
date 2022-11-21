@@ -1,4 +1,6 @@
 import { RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import Router from "router";
 
@@ -8,6 +10,20 @@ import Router from "router";
  *
  */
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 3,
+    },
+    mutations: {},
+  },
+});
+
 export default function App() {
-  return <RouterProvider router={Router}></RouterProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      <RouterProvider router={Router} />
+    </QueryClientProvider>
+  );
 }
