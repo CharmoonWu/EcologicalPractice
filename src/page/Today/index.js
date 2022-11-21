@@ -1,4 +1,4 @@
-import React from "react";
+import { Suspense } from "react";
 import tw from "twin.macro";
 import { useQuery } from "react-query";
 
@@ -6,7 +6,7 @@ import { historyToday } from "network/api";
 
 const Wrap = tw.div`w-full`;
 
-export default function Main() {
+const Content = () => {
   const { isLoading, data } = useQuery(
     "todayStory",
     () => historyToday({ type: 1 }),
@@ -22,5 +22,13 @@ export default function Main() {
         <span key={i}>{item.details}</span>
       ))}
     </Wrap>
+  );
+};
+
+export default function Main() {
+  return (
+    <Suspense fallback={<>isloading</>}>
+      <Content />
+    </Suspense>
   );
 }

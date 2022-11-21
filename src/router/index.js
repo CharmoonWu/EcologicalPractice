@@ -18,16 +18,7 @@ const router = createBrowserRouter(
       <Route path="user">
         <Route index element={<User />} />
       </Route>
-      <Route
-        path="today"
-        element={
-          <Suspense fallback={<>isloading</>}>
-            <Today />
-          </Suspense>
-        }
-        errorElement={<Error />}
-      />
-
+      <Route path="today" element={<Today />} errorElement={<Error />} />
       <Route path="set" element={<Set />} />
     </Route>
   )
