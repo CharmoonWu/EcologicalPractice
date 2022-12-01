@@ -1,4 +1,3 @@
-import React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
@@ -7,9 +6,9 @@ import tw from "twin.macro";
 
 import Sidebar from "compontents/Sidebar";
 
-const Wrap = tw.div`w-full flex h-screen`;
+const Wrap = tw.div`flex w-screen h-screen overflow-hidden`;
 const AppBarWrap = styled(AppBar)`
-  width: calc(100% - 300px) !important;
+  width: calc(100vw - 300px) !important;
 `;
 
 const Search = styled("div")(({ theme }) => ({
@@ -55,7 +54,7 @@ export default function Main() {
   const handleChange = () => {};
   return (
     <Wrap>
-      <Sidebar></Sidebar>
+      <Sidebar />
       <div className="flex flex-col flex-1 pt-[64px]">
         <AppBarWrap>
           <Toolbar className="flex justify-end">
@@ -71,7 +70,9 @@ export default function Main() {
             </Search>
           </Toolbar>
         </AppBarWrap>
-        <Outlet />
+        <div className="overflow-hidden">
+          <Outlet />
+        </div>
       </div>
     </Wrap>
   );

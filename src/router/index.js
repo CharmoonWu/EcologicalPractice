@@ -3,7 +3,6 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { Suspense } from "react";
 
 import Error from "compontents/Error";
 
