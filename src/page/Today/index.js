@@ -46,6 +46,7 @@ const Content = () => {
         </Stack>
       </WrapPaper>
       <Paper elevation={0} className="flex-1 p-3 overflow-y-auto">
+        <h1 className="text-3xl text-pink-300 font-bold mb-3">详情介绍</h1>
         {detail}
       </Paper>
     </Wrap>
