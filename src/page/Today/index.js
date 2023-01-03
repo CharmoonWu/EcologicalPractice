@@ -1,10 +1,10 @@
-import { Suspense, useState, useMemo } from "react";
-import tw, { styled } from "twin.macro";
-import { useQuery } from "react-query";
-import { Stack, Divider, Link, Paper } from "@mui/material";
+import { Suspense, useState, useMemo } from 'react';
+import tw, { styled } from 'twin.macro';
+import { useQuery } from '@tanstack/react-query';
+import { Stack, Divider, Link, Paper } from '@mui/material';
 
-import { historyToday } from "network/api";
-import Loading from "compontents/Loading";
+import { historyToday } from 'network/api';
+import Loading from 'compontents/Loading';
 
 const Wrap = tw.div`w-full h-full flex p-3`;
 const WrapPaper = styled(Paper)`
@@ -19,11 +19,14 @@ const WrapPaper = styled(Paper)`
 
 const Content = () => {
   const [current, setCurrent] = useState(0);
-  const { data } = useQuery("todayStory", () => historyToday({ type: 1 }), {
+  const { data } = useQuery(['todayStory'], () => historyToday({ type: 1 }), {
     suspense: true,
   });
 
-  const detail = useMemo(() => data[current].details, [current]);
+  const detail = useMemo(
+    () => data?.[current].details || '暂无资料',
+    [current],
+  );
 
   return (
     <Wrap>
@@ -33,7 +36,7 @@ const Content = () => {
           divider={<Divider orientation="vertical" flexItem />}
           spacing={2}
         >
-          {data.map((item, i) => (
+          {data?.map((item, i) => (
             <Link
               href="#"
               underline="hover"

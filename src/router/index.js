@@ -2,14 +2,14 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import Error from "compontents/Error";
+import Error from 'compontents/Error';
 
-import Main from "page/Main";
-import User from "page/User";
-import Set from "page/Set";
-import Today from "page/Today";
+import Main from 'page/Main';
+import User from 'page/User';
+import Set from 'page/Set';
+import Today from 'page/Today';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,8 +19,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="today" element={<Today />} errorElement={<Error />} />
       <Route path="set" element={<Set />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 export default router;
