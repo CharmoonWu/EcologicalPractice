@@ -1,31 +1,61 @@
 import tw from 'twin.macro';
-import { Button } from '@mui/material';
-import shallow from 'zustand/shallow';
+import { Button, TextField } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-import { useBearStore } from 'zustandStore';
-import { useEffect } from 'react';
+import { useUserDetail } from 'zustandStore';
 
-const Wrap = tw.div`w-full`;
+const Wrap = tw.div`w-full h-full p-16`;
+const Form = tw.form`grid grid-cols-2 gap-8`;
 
 export default function Main() {
-  const { bears, uuid } = useBearStore((state) => ({
-    bears: state.bears,
-    uuid: state.uuid,
-  })); //直接指定对应的state
+  const [detail, setDetail] = useUserDetail((state) => [
+    state.detail,
+    state.setDetail,
+  ]);
+  const { handleSubmit, register } = useForm({
+    defaultValues: detail,
+  });
 
-  const reduce = useBearStore((state) => state.reducePopulation);
-  const addFun = useBearStore((state) => state.increasePopulation);
-
-  useEffect(() => {
-    console.log(bears);
-    console.log(uuid);
-  }, [bears, uuid]);
+  const onSubmit = (formData) => {
+    setDetail(formData);
+    toast.success('保存成功');
+  };
 
   return (
     <Wrap>
-      <Button onClick={reduce}>-1</Button>
-      <span>{bears}</span>
-      <Button onClick={addFun}>+1</Button>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          {...register('userName')}
+          label="姓名"
+          className="w-[250px]"
+          size="small"
+        />
+        <TextField
+          {...register('phone')}
+          label="手机号码"
+          className="w-[250px]"
+          size="small"
+        />
+        <TextField
+          {...register('email')}
+          label="邮箱"
+          className="w-[250px]"
+          size="small"
+        />
+        <TextField
+          {...register('home')}
+          label="现居住地"
+          className="w-[250px]"
+          size="small"
+          multiline
+          rows={4}
+        />
+        <Button className="w-[250px] invisible" />
+        <Button type="submit" variant="contained" className="w-[250px]">
+          提交
+        </Button>
+      </Form>
     </Wrap>
   );
 }

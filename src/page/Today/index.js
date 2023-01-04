@@ -25,7 +25,7 @@ const Content = () => {
 
   const detail = useMemo(
     () => data?.[current].details || '暂无资料',
-    [current],
+    [data, current],
   );
 
   return (

@@ -11,8 +11,15 @@ export const useBearStore = create((set) => ({
 /**
  * 登陆成功展示tab
  */
-
 export const usePurviewSet = create((set) => ({
   isEntrance: false,
   setEntrance: (v) => set(() => ({ isEntrance: v })),
+}));
+
+/**
+ * 用户设置详情
+ */
+export const useUserDetail = create((set) => ({
+  detail: {},
+  setDetail: (v) => set({ detail: v }),
 }));
