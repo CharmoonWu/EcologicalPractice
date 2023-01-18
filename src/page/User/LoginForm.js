@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import tw from 'twin.macro';
-import { TextField, Button } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { TextField, Button, FormControlLabel, Checkbox } from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
 import { AccountCircle, Password } from '@mui/icons-material';
+import shallow from 'zustand/shallow';
 
 import Alert from 'compontents/Alert';
 import { usePurviewSet } from 'zustandStore';
@@ -14,16 +15,24 @@ const PASSWORD = '1234';
 
 export default function LoginForm() {
   const alertRef = useRef(null);
-  const setEntrance = usePurviewSet((state) => state.setEntrance);
+  const [setEntrance, setSelect, isSelect] = usePurviewSet(
+    (state) => [state.setEntrance, state.setSelect, state.isSelect],
+    shallow,
+  );
 
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, control } = useForm({
+    defaultValues: {
+      save: isSelect,
+    },
+  });
 
-  const onSubmit = ({ password }) => {
+  const onSubmit = ({ password, save }) => {
     if (password !== PASSWORD) {
       setEntrance(false);
       alertRef.current.handleSwitch(true, 'error');
     } else {
       setEntrance(true);
+      setSelect(save);
       alertRef.current.handleSwitch(true, 'success');
     }
   };
@@ -48,7 +57,23 @@ export default function LoginForm() {
           type="password"
           InputProps={{ startAdornment: <Password /> }}
         />
-        <Button type="submit">提交</Button>
+
+        <Controller
+          control={control}
+          name="save"
+          render={({ field: { onChange, onBlur, value, name, ref } }) => (
+            <FormControlLabel
+              control={
+                <Checkbox onChange={onChange} checked={value} inputRef={ref} />
+              }
+              label="记住状态"
+            />
+          )}
+        />
+
+        <Button type="submit" variant="contained">
+          提交
+        </Button>
       </Form>
 
       <Alert ref={alertRef} />

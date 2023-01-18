@@ -13,7 +13,9 @@ export const useBearStore = create((set) => ({
  */
 export const usePurviewSet = create((set) => ({
   isEntrance: false,
+  isSelect: true,
   setEntrance: (v) => set(() => ({ isEntrance: v })),
+  setSelect: (v) => set(() => ({ isSelect: v })),
 }));
 
 /**

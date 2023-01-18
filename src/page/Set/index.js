@@ -2,7 +2,6 @@ import tw from 'twin.macro';
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-
 import { useUserDetail } from 'zustandStore';
 
 const Wrap = tw.div`w-full h-full p-16`;
@@ -13,7 +12,12 @@ export default function Main() {
     state.detail,
     state.setDetail,
   ]);
-  const { handleSubmit, register } = useForm({
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     defaultValues: detail,
   });
 
@@ -26,16 +30,26 @@ export default function Main() {
     <Wrap>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          {...register('userName')}
+          {...register('userName', { required: '必填' })}
           label="姓名"
           className="w-[250px]"
           size="small"
+          error={errors?.userName ? true : false}
+          helperText={errors?.userName ? errors?.userName.message : undefined}
         />
         <TextField
-          {...register('phone')}
+          {...register('phone', {
+            required: '必填',
+            maxLength: {
+              value: 11,
+              message: '请输入11位的手机号码',
+            },
+          })}
           label="手机号码"
           className="w-[250px]"
           size="small"
+          error={errors?.phone ? true : false}
+          helperText={errors?.phone ? errors?.phone.message : undefined}
         />
         <TextField
           {...register('email')}

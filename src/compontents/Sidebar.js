@@ -20,6 +20,11 @@ const path = [
     name: 'Today',
     state: true,
   },
+  {
+    path: '/photoWall',
+    name: 'photoWall',
+    state: true,
+  },
 ];
 
 export default function Sidebar() {
