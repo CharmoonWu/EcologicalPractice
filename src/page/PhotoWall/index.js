@@ -81,10 +81,6 @@ export default function Main() {
     setImgInfo(item);
   };
 
-  console.log('====================================');
-  console.log(imgInfo);
-  console.log('====================================');
-
   return (
     <Wrap>
       <ImageList variant="woven" cols={4} gap={8}>
