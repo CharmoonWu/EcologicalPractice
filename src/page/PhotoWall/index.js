@@ -1,5 +1,8 @@
 import tw from 'twin.macro';
-import { ImageList, ImageListItem } from '@mui/material';
+import { ImageList, ImageListItem, Dialog } from '@mui/material';
+import { useState } from 'react';
+import { isNil } from 'ramda';
+import { UndoIcon } from 'evergreen-ui';
 
 const Wrap = tw.div`p-5 h-full overflow-auto`;
 const itemData = [
@@ -66,20 +69,45 @@ const itemData = [
 ];
 
 export default function Main() {
+  const [open, setOpen] = useState(false);
+  const [imgInfo, setImgInfo] = useState(undefined);
+  const handleClose = () => {
+    setOpen(false);
+    setImgInfo(undefined);
+  };
+
+  const onImgClick = (item) => {
+    setOpen(true);
+    setImgInfo(item);
+  };
+
+  console.log('====================================');
+  console.log(imgInfo);
+  console.log('====================================');
+
   return (
     <Wrap>
       <ImageList variant="woven" cols={4} gap={8}>
         {itemData.map((item, i) => (
-          <ImageListItem key={item.img}>
+          <ImageListItem key={i}>
             <img
+              onClick={() => onImgClick(item)}
               src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
               srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
+              className="cursor-pointer"
             />
           </ImageListItem>
         ))}
       </ImageList>
+      <Dialog open={open} onClose={handleClose}>
+        {isNil(imgInfo) ? (
+          <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d" />
+        ) : (
+          <img src={imgInfo.img} alt={imgInfo.title} loading="lazy" />
+        )}
+      </Dialog>
     </Wrap>
   );
 }
