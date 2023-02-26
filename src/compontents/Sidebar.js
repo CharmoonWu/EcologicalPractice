@@ -25,6 +25,11 @@ const path = [
     name: 'photoWall',
     state: true,
   },
+  {
+    path: '/textWall',
+    name: 'textWall',
+    state: true,
+  },
 ];
 
 export default function Sidebar() {
