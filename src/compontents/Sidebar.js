@@ -1,36 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MenuList, MenuItem, ListItemText } from '@mui/material';
-
 import { usePurviewSet } from 'zustandStore';
-
-const path = [
-  {
-    path: '/user',
-    name: 'user',
-    state: false,
-  },
-  {
-    path: '/set',
-    name: 'set',
-    state: true,
-  },
-  {
-    path: '/today',
-    name: 'Today',
-    state: true,
-  },
-  {
-    path: '/photoWall',
-    name: 'photoWall',
-    state: true,
-  },
-  {
-    path: '/textWall',
-    name: 'textWall',
-    state: true,
-  },
-];
+import { path } from './path';
 
 export default function Sidebar() {
   const navigate = useNavigate();

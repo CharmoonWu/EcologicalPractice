@@ -12,6 +12,7 @@ import Set from 'page/Set';
 import Today from 'page/Today';
 import PhotoWall from 'page/PhotoWall';
 import TextWall from 'page/TextWall';
+import Statistics from 'page/Statistics';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="set" element={<Set />} />
       <Route path="photoWall" element={<PhotoWall />} />
       <Route path="textWall" element={<TextWall />} />
+      <Route path="statistics" element={<Statistics />} />
     </Route>,
   ),
 );

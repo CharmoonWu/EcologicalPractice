@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 export const useBearStore = create((set) => ({
   uuid: Math.random() * 10,

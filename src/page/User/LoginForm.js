@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import { TextField, Button, FormControlLabel, Checkbox } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { AccountCircle, Password } from '@mui/icons-material';
-import shallow from 'zustand/shallow';
+import { shallow } from 'zustand/shallow';
 
 import Alert from 'compontents/Alert';
 import { usePurviewSet } from 'zustandStore';
