@@ -36,7 +36,7 @@ const Content = () => {
           divider={<Divider orientation="vertical" flexItem />}
           spacing={2}
         >
-          {data?.map((item, i) => (
+          {data.map((item, i) => (
             <Link
               href="#"
               underline="hover"

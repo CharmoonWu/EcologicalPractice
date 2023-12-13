@@ -25,6 +25,7 @@ export default function Sidebar() {
   useEffect(() => {
     setSelected(0);
     navigate('/user');
+    // eslint-disable-next-line
   }, []);
 
   return (

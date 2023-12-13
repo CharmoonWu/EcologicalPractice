@@ -87,10 +87,10 @@ export default function Main() {
         {itemData.map((item, i) => (
           <ImageListItem key={i}>
             <img
+              alt={''}
               onClick={() => onImgClick(item)}
               src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
               srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
               loading="lazy"
               className="cursor-pointer"
             />
