@@ -5,6 +5,7 @@ const envDev = '/api';
 
 const APPID = 'iqcrcsjrjrtvj0kn';
 const APPSECRET = 'OsYvCSUvUZPgyCGQsj8m8jBkkRqHd181';
+const Text = '';
 
 const instance = axios.create({
   baseURL: BASE_URL + envDev,
