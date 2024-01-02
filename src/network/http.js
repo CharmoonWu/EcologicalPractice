@@ -1,7 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "https://www.mxnzp.com";
-const envDev = "/api";
+const BASE_URL = 'https://www.mxnzp.com';
+const envDev = '/api';
+
+const APPID = 'iqcrcsjrjrtvj0kn';
+const APPSECRET = 'OsYvCSUvUZPgyCGQsj8m8jBkkRqHd181';
 
 const instance = axios.create({
   baseURL: BASE_URL + envDev,
@@ -12,7 +15,7 @@ instance.interceptors.response.use(
   (v) => {
     return v.data.data;
   },
-  (e) => console.error(e)
+  (e) => console.error(e),
 );
 
 export { instance };
