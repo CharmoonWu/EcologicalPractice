@@ -18,4 +18,4 @@ instance.interceptors.response.use(
   (e) => console.error(e),
 );
 
-export { instance };
+export { instance, APPID, APPSECRET };
