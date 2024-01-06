@@ -13,6 +13,7 @@ import Today from 'page/Today';
 import PhotoWall from 'page/PhotoWall';
 import TextWall from 'page/TextWall';
 import Statistics from 'page/Statistics';
+import Qrcode from 'page/Qrcode';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="photoWall" element={<PhotoWall />} />
       <Route path="textWall" element={<TextWall />} />
       <Route path="statistics" element={<Statistics />} />
+      <Route path="qrcode" element={<Qrcode />} />
     </Route>,
   ),
 );

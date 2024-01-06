@@ -7,6 +7,7 @@ const pathName = [
   'photoWall',
   'textWall',
   'statistics',
+  'qrcode',
 ];
 
 const path = map((item) => {
