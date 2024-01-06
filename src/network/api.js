@@ -19,7 +19,7 @@ export const historyToday = (params) => {
  * @param {number} params.type
  */
 export const qrcode = (params) => {
-  return instance.get('/qrcode/create/single/base64', {
+  return instance.get('/qrcode/create/single', {
     params: {
       app_id: APPID,
       app_secret: APPSECRET,
