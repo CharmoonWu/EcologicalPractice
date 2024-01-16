@@ -15,6 +15,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.3",
+    "dotenv-cli": "^7.3.0",
     "evergreen-ui": "^6.10.5",
     "file-saver": "^2.0.5",
     "ramda": "^0.28.0",
@@ -32,6 +33,7 @@
     "zustand": "^4.1.4"
   },
   "scripts": {
+    "start:prd": "dotenv -e .env.prd react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,7 +45,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "no-empty-pattern": "off"
     }
   },
   "browserslist": {
@@ -64,6 +67,7 @@
     }
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.0",
