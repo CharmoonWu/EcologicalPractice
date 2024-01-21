@@ -1,8 +1,9 @@
 import { styled, alpha } from '@mui/material/styles';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { Outlet } from 'react-router-dom';
-import { Toolbar, InputBase, AppBar } from '@mui/material';
+import { Toolbar, InputBase, AppBar, Avatar } from '@mui/material';
 import tw from 'twin.macro';
+import { lightGreen } from '@mui/material/colors';
 
 import Sidebar from 'compontents/Sidebar';
 
@@ -57,7 +58,10 @@ export default function Main() {
       <Sidebar />
       <div className="flex flex-col flex-1 pt-[64px] h-screen">
         <AppBarWrap>
-          <Toolbar className="flex justify-end">
+          <Toolbar className="flex justify-between">
+            <Avatar sx={{ bgcolor: lightGreen[300] }}>
+              {process.env.REACT_APP_NOT_SECRET_CODE}
+            </Avatar>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

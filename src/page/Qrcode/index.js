@@ -1,13 +1,9 @@
 import tw from 'twin.macro';
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useUserDetail } from 'zustandStore';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { qrcode } from 'network/api';
 import { useState } from 'react';
-import { type } from '@testing-library/user-event/dist/type';
-import { saveAs } from 'file-saver';
 
 const Wrap = tw.div`w-full h-full p-16`;
 const Form = tw.form`grid grid-cols-2 gap-8`;
@@ -72,8 +68,6 @@ export default function Main() {
       <CodeWall>
         <img src={url} alt="" />
       </CodeWall>
-      <div>{process.env.NODE_ENV}</div>
-      <div>{process.env.REACT_APP_NOT_SECRET_CODE}</div>
     </Wrap>
   );
 }
