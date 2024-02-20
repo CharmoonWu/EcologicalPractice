@@ -13,6 +13,9 @@ const instance = axios.create({
 instance.interceptors.request.use((v) => v);
 instance.interceptors.response.use(
   (v) => {
+    if (v.data.code !== 200) {
+      return v.data.msg;
+    }
     return v.data.data;
   },
   (e) => console.error(e),

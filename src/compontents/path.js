@@ -8,6 +8,7 @@ const pathName = [
   'textWall',
   'statistics',
   'qrcode',
+  'quotesList',
 ];
 
 const path = map((item) => {

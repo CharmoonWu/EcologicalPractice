@@ -3,7 +3,6 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-
 import Error from 'compontents/Error';
 
 import Main from 'page/Main';
@@ -14,6 +13,7 @@ import PhotoWall from 'page/PhotoWall';
 import TextWall from 'page/TextWall';
 import Statistics from 'page/Statistics';
 import Qrcode from 'page/Qrcode';
+import QuotesList from 'page/Quotes/List';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,8 +27,8 @@ const router = createBrowserRouter(
       <Route path="textWall" element={<TextWall />} />
       <Route path="statistics" element={<Statistics />} />
       <Route path="qrcode" element={<Qrcode />} />
+      <Route path="quotesList" element={<QuotesList />} />
     </Route>,
   ),
 );
-
 export default router;

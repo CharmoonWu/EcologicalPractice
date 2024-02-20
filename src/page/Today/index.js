@@ -1,6 +1,6 @@
-import { Suspense, useState, useMemo } from 'react';
+import { Suspense, useState, useMemo, lazy } from 'react';
 import tw, { styled } from 'twin.macro';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery, useQuery } from '@tanstack/react-query';
 import { Stack, Divider, Link, Paper } from '@mui/material';
 
 import { historyToday } from 'network/api';
@@ -17,10 +17,12 @@ const WrapPaper = styled(Paper)`
   }
 `;
 
-const Content = () => {
+export default () => {
   const [current, setCurrent] = useState(0);
-  const { data } = useQuery(['todayStory'], () => historyToday({ type: 1 }), {
-    suspense: true,
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['todayStory'],
+    queryFn: async () => await historyToday({ type: 1 }),
   });
 
   const detail = useMemo(
@@ -28,38 +30,44 @@ const Content = () => {
     [data, current],
   );
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Wrap>
-      <WrapPaper elevation={0} className="flex-1 overflow-y-auto">
-        <Stack
-          direction="column"
-          divider={<Divider orientation="vertical" flexItem />}
-          spacing={2}
-        >
-          {data.map((item, i) => (
-            <Link
-              href="#"
-              underline="hover"
-              key={i}
-              onClick={() => setCurrent(i)}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </Stack>
-      </WrapPaper>
-      <Paper elevation={0} className="flex-1 p-3 overflow-y-auto">
-        <h1 className="text-3xl text-pink-300 font-bold mb-3">详情介绍</h1>
-        {detail}
-      </Paper>
+      <Suspense fallback={<Loading />}>
+        {Array.isArray(data) ? (
+          <>
+            <WrapPaper elevation={0} className="flex-1 overflow-y-auto">
+              <Stack
+                direction="column"
+                divider={<Divider orientation="vertical" flexItem />}
+                spacing={2}
+              >
+                {data?.map((item, i) => (
+                  <Link
+                    href="#"
+                    underline="hover"
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </Stack>
+            </WrapPaper>
+            <Paper elevation={0} className="flex-1 p-3 overflow-y-auto">
+              <h1 className="text-3xl text-pink-300 font-bold mb-3">
+                详情介绍
+              </h1>
+              {detail}
+            </Paper>
+          </>
+        ) : (
+          '暂无数据'
+        )}
+      </Suspense>
     </Wrap>
   );
 };
-
-export default function Main() {
-  return (
-    <Suspense fallback={<Loading />}>
-      <Content />
-    </Suspense>
-  );
-}

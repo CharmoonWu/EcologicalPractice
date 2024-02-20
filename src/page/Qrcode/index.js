@@ -18,7 +18,8 @@ export default function Main() {
 
   const [url, setUrl] = useState(null);
 
-  const qrcodeMutation = useMutation(qrcode, {
+  const qrcodeMutation = useMutation({
+    mutationFn: qrcode,
     onSuccess: (data) => {
       if (data.type === 0) {
         setUrl(data.qrCodeUrl);
