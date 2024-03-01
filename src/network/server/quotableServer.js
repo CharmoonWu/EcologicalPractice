@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((v) => v);
-instance.interceptors.response.use((v) => v);
+instance.interceptors.response.use((v) => v.data);
 
 /**
  * @param {number} params.maxLength

@@ -3,11 +3,9 @@ const { map } = require('ramda');
 const pathName = [
   'user',
   'set',
-  'today',
   'photoWall',
   'textWall',
   'statistics',
-  'qrcode',
   'quotesList',
 ];
 
