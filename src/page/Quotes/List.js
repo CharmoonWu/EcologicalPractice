@@ -19,7 +19,7 @@ export default function List() {
   return (
     <div className="h-full overflow-y-auto space-y-3 p-3 divide-y divide-slate-200">
       {data.results.map((item) => (
-        <div className="flex flex-col pt-3">
+        <div className="flex flex-col pt-3" key={item?.id}>
           <span className="w-[70%] line-clamp-2">{item?.content}</span>
           <span className="self-end text-gray-500">{item?.author}</span>
         </div>

@@ -12,6 +12,7 @@ import PhotoWall from 'page/PhotoWall';
 import TextWall from 'page/TextWall';
 import Statistics from 'page/Statistics';
 import QuotesList from 'page/Quotes/List';
+import Map from 'page/Map';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path="textWall" element={<TextWall />} />
       <Route path="statistics" element={<Statistics />} />
       <Route path="quotesList" element={<QuotesList />} />
+      <Route path="map" element={<Map />} />
     </Route>,
   ),
 );
