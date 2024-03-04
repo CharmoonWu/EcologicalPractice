@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Geocode, District, Id } from 'network/server/amapServer';
+import { Geocode, District, Id, Place } from 'network/server/amapServer';
 
 export default function Main() {
   const { data, isLoading } = useQuery({
@@ -30,6 +30,22 @@ export default function Main() {
       Id({
         params: {
           id: '192.168.1.22', //
+        },
+      }),
+  });
+
+  useQuery({
+    queryKey: ['place'],
+    queryFn: () =>
+      Place({
+        params: {
+          keywords: '烤鸭',
+          types: '050103', //广东菜(粤菜)
+          city: '北京',
+          children: 1,
+          offset: 20,
+          page: 1,
+          extensions: 'all',
         },
       }),
   });

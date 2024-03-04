@@ -49,3 +49,17 @@ export const Id = ({ params }) => {
     },
   });
 };
+
+/**
+ * 搜索POI
+ * @param {string} params.keywords
+ * @param {string} params.types
+ */
+export const Place = ({ params }) => {
+  return instance.get('/place/text', {
+    params: {
+      key: KEY,
+      ...params,
+    },
+  });
+};
