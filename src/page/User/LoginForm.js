@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import { TextField, Button, FormControlLabel, Checkbox } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { AccountCircle, Password } from '@mui/icons-material';
-import { shallow } from 'zustand/shallow';
+import { useShallow } from 'zustand/react/shallow';
 
 import Alert from 'compontents/Alert';
 import { usePurviewSet } from 'zustandStore';
@@ -15,9 +15,13 @@ const PASSWORD = '1234';
 
 export default function LoginForm() {
   const alertRef = useRef(null);
+
   const [setEntrance, setSelect, isSelect] = usePurviewSet(
-    (state) => [state.setEntrance, state.setSelect, state.isSelect],
-    shallow,
+    useShallow(({ setEntrance, setSelect, isSelect }) => [
+      setEntrance,
+      setSelect,
+      isSelect,
+    ]),
   );
 
   const { handleSubmit, register, control } = useForm({
@@ -61,7 +65,7 @@ export default function LoginForm() {
         <Controller
           control={control}
           name="save"
-          render={({ field: { onChange, onBlur, value, name, ref } }) => (
+          render={({ field: { onChange, value, name, ref } }) => (
             <FormControlLabel
               control={
                 <Checkbox onChange={onChange} checked={value} inputRef={ref} />

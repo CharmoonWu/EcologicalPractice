@@ -1,8 +1,18 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Geocode, District, Id, Place } from 'network/server/amapServer';
+import { Geocode, District, Id } from 'network/server/amapServer';
+import { TextField, Button, FormControlLabel, Checkbox } from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
+import tw from 'twin.macro';
+
+import PlaceCom from './PlaceCom';
+
+const Wrap = tw.div`w-full h-full`;
+const Form = tw.form`flex flex-col space-y-6`;
 
 export default function Main() {
+  const { handleSubmit, register, control } = useForm({});
+
   const { data, isLoading } = useQuery({
     queryKey: ['Geocode'],
     queryFn: () =>
@@ -34,21 +44,40 @@ export default function Main() {
       }),
   });
 
-  useQuery({
-    queryKey: ['place'],
-    queryFn: () =>
-      Place({
-        params: {
-          keywords: '烤鸭',
-          types: '050103', //广东菜(粤菜)
-          city: '北京',
-          children: 1,
-          offset: 20,
-          page: 1,
-          extensions: 'all',
-        },
-      }),
-  });
+  const onSubmit = (formData) => {
+    console.log(formData);
+  };
 
-  return <div>index</div>;
+  return (
+    <Wrap>
+      <Form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <TextField
+          {...register('keywords')}
+          defaultValue="熊猫"
+          className="w-[200px]"
+          variant="standard"
+          label="关键字"
+        />
+
+        <TextField
+          {...register('types')}
+          className="w-[200px]"
+          variant="standard"
+          label="类型"
+        />
+
+        <TextField
+          {...register('city')}
+          className="w-[200px]"
+          variant="standard"
+          label="城市"
+        />
+
+        <Button type="submit" variant="contained" className="w-[50px]">
+          确认
+        </Button>
+      </Form>
+      <PlaceCom />
+    </Wrap>
+  );
 }
