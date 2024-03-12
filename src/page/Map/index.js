@@ -8,7 +8,7 @@ import tw from 'twin.macro';
 import PlaceCom from './PlaceCom';
 
 const Wrap = tw.div`w-full h-full`;
-const Form = tw.form`flex flex-col space-y-6`;
+const Form = tw.form`flex space-x-3 p-3`;
 
 export default function Main() {
   const { handleSubmit, register, control } = useForm({});
