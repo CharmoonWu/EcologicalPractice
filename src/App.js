@@ -23,8 +23,9 @@ import Router from 'router';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 3,
+      staleTime: 1000 * 60 * 5,
       networkMode: 'offlineFirst',
+      refetchOnWindowFocus: false,
     },
     mutations: {
       networkMode: 'offlineFirst',

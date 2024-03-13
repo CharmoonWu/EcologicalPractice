@@ -5,6 +5,8 @@ import { all, equals, filter, forEach, map } from 'ramda';
 import { useEffect } from 'react';
 import { useMemo } from 'react';
 
+import UploadImg from './UploadImg';
+
 const Wrap = tw.div``;
 
 export default function Main() {
@@ -94,6 +96,8 @@ export default function Main() {
           />
         ))}
       </FormGroup>
+
+      <UploadImg />
     </Wrap>
   );
 }

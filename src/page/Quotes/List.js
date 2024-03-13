@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from 'compontents/Loading';
 
 export default function List() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isPending } = useQuery({
     queryKey: ['QuotesList'],
     queryFn: () =>
       QuotesList({
@@ -12,7 +12,7 @@ export default function List() {
       }),
   });
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />;
   }
 
