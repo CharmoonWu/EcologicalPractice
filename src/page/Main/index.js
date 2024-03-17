@@ -56,7 +56,7 @@ export default function Main() {
   return (
     <Wrap>
       <Sidebar />
-      <div className="flex flex-col flex-1 pt-[64px] h-screen">
+      <div className="flex flex-col flex-1 pt-[64px] h-screen w-[calc(100vw-300px)]">
         <AppBarWrap>
           <Toolbar className="flex justify-between">
             <Avatar sx={{ bgcolor: lightGreen[300] }}>
