@@ -46,6 +46,7 @@ export default function Main() {
 
   const onSubmit = (formData) => {
     console.log(formData);
+    console.log(formData, '01');
   };
 
   return (
